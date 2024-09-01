@@ -1,0 +1,39 @@
+name: Sync Main to Develop and Stage
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  sync-to-develop:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Create PR to develop
+        uses: repo-sync/pull-request@v2
+        with:
+          source_branch: main
+          destination_branch: develop
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          pr_title: "[MAIN->DEVELOP] Sync main to develop"
+          pr_body: "Automated PR to sync main to develop"
+          pr_label: "auto-merge"
+
+  sync-to-stage:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Create PR to stage
+        uses: repo-sync/pull-request@v2
+        with:
+          source_branch: main
+          destination_branch: stage
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          pr_title: "[MAIN->STAGE] Sync main to stage"
+          pr_body: "Automated PR to sync main to stage"
+          pr_label: "auto-merge"
