@@ -7,10 +7,13 @@ on:
 jobs:
   create-stage-pr:
     if: github.event.pull_request.merged == true && github.event.pull_request.base.ref == 'develop'
+    permissions:
+      contents: write
+      pull-requests: write
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4  # Updated to v4
 
       - name: Create PR to stage
         uses: repo-sync/pull-request@v2
@@ -24,10 +27,13 @@ jobs:
 
   create-main-pr:
     if: github.event.pull_request.merged == true && github.event.pull_request.base.ref == 'stage'
+    permissions:
+      contents: write
+      pull-requests: write
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4  # Updated to v4
 
       - name: Create PR to main
         uses: repo-sync/pull-request@v2
