@@ -9,6 +9,7 @@ jobs:
   sync-to-develop:
     permissions:
       contents: write
+      pull-requests: write  # Assuming you need to create or manage pull requests
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -27,6 +28,7 @@ jobs:
   sync-to-stage:
     permissions:
       contents: write
+      pull-requests: write  # Assuming you need to create or manage pull requests
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
