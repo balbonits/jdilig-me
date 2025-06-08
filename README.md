@@ -1,65 +1,36 @@
-# jdilig-me
-my personal website
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
+## Getting Started
 
-# Branching Strategy
+First, run the development server:
 
-This project follows a straightforward branching strategy to manage development, staging, and production environments.
+```bash
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
+```
 
-## Branches
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-- **main:** 
-  - Represents the production-ready state of the project. Only stable, tested code should be merged here.
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-- **stage:** 
-  - Used for QA and pre-production testing. Code here should be nearly production-ready but might include experimental features or configurations.
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-- **develop:** 
-  - The primary branch for active development. Features and bug fixes are merged here before moving to `stage`.
+## Learn More
 
-## Branch Naming Conventions
+To learn more about Next.js, take a look at the following resources:
 
-- **Feature Branches:** `feature/[branch-name]`
-  - For new features or enhancements. Example: `feature/new-login-system`.
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-- **Bugfix Branches:** `bugfix/[branch-name]`
-  - For fixing bugs in the `develop` branch. Example: `bugfix/fix-login-issue`.
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-- **Hotfix Branches:** `hotfix/[branch-name]`
-  - For urgent fixes that need to be applied directly to `main`. Example: `hotfix/urgent-login-bug`.
+## Deploy on Vercel
 
-- **Release Branches:** `release/[YYYY-MM-DD-HHMM]`
-  - Created from `develop` when preparing for a release. Named with the date and time of creation. Example: `release/2024-01-01-1430`.
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-## Branch Usage
-
-- **feature:** 
-  - Used for developing new features or significant changes. These branches are typically created from `develop` and merged back into `develop`.
-
-- **bugfix:** 
-  - For fixing bugs found in the `develop` branch. These should be small, focused changes.
-
-- **hotfix:** 
-  - For critical fixes that need immediate deployment to production (`main`). After fixing, merge into `main` and then into `develop` to ensure the fix propagates.
-
-- **release:** 
-  - When features are ready for release, a release branch is created from `develop`. Here, final testing and minor adjustments are made before merging into `stage` and then `main`.
-
-## Workflow
-
-1. **Develop Features:** 
-   - Create feature branches from `develop`. Work, commit, and push changes.
-
-2. **Fix Bugs:** 
-   - For bugs found during development, create bugfix branches from `develop`.
-
-3. **Prepare for Release:** 
-   - When ready, create a release branch from `develop`, finalize features, and merge into `stage`.
-
-4. **QA and Pre-Production:** 
-   - Use `stage` for final testing. If all good, merge into `main`.
-
-5. **Urgent Fixes:** 
-   - If something critical needs fixing in production, create a hotfix branch from `main`.
-
-This strategy ensures a clear path from development to production, maintaining stability in production while allowing flexibility in development.
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
