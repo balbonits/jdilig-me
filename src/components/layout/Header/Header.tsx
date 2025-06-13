@@ -1,5 +1,5 @@
 import React from 'react';
-import HeaderNav from '../../nav/Header/Header';
+import HeaderNav from '@components/nav/Header/Header';
 import './Header.css';
 
 const HeaderLayout = () => {
