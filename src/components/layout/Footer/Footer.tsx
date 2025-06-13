@@ -2,11 +2,18 @@ import React from 'react';
 import FooterNav from '../../nav/Footer/Footer';
 import './Footer.css';
 
-const HeaderLayout = () => {
+const FooterLayout = () => {
     return (
-    <header>
-        <div><h1>John Dilig</h1></div>
-        <div><FooterNav /></div>
-    </header>
+    <footer>
+        <div>
+            <h1>John Dilig</h1>
+            <p>
+                Redondo Beach, CA, USA <br />
+            </p>
+        </div>
+        <FooterNav />
+    </footer>
     );
 };
+
+export default FooterLayout;

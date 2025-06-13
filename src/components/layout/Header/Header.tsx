@@ -5,8 +5,12 @@ import './Header.css';
 const HeaderLayout = () => {
     return (
     <header>
-        <div><h1>John Dilig</h1></div>
-        <div><HeaderNav /></div>
+        <div>
+            <h1>John Dilig</h1>
+        </div>
+        <HeaderNav />
     </header>
     );
 };
+
+export default HeaderLayout;
