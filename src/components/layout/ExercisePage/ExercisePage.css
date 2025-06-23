@@ -1,0 +1,125 @@
+/* /src/components/layout/ExercisePage/ExercisePage.css */
+
+.exercise-container {
+    @apply max-w-7xl mx-auto p-6 space-y-8;
+  }
+  
+  .description-section {
+    @apply bg-white rounded-lg shadow-md p-6;
+  }
+  
+  .title {
+    @apply text-3xl font-bold text-gray-800 mb-4;
+  }
+  
+  .description {
+    @apply text-lg text-gray-600 mb-6;
+  }
+  
+  .info-grid {
+    @apply grid grid-cols-1 md:grid-cols-2 gap-6;
+  }
+  
+  .section-heading {
+    @apply text-lg font-semibold mb-2;
+  }
+  
+  .concepts-container {
+    @apply flex flex-wrap gap-2;
+  }
+  
+  .concept-tag {
+    @apply bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm;
+  }
+  
+  .performance-text {
+    @apply text-sm text-gray-600;
+  }
+  
+  .examples-section {
+    @apply mt-6;
+  }
+  
+  .example-item {
+    @apply bg-gray-50 p-4 rounded-md mb-2;
+  }
+  
+  .example-code {
+    @apply text-sm font-mono;
+  }
+  
+  .example-description {
+    @apply text-xs text-gray-500 mt-1;
+  }
+  
+  .main-grid {
+    @apply grid grid-cols-1 lg:grid-cols-2 gap-8;
+  }
+  
+  .code-section {
+    @apply bg-gray-900 rounded-lg shadow-md p-6;
+  }
+  
+  .section-title {
+    @apply text-xl font-bold mb-4;
+  }
+  
+  .code-section .section-title {
+    @apply text-white;
+  }
+  
+  .output-section .section-title {
+    @apply text-gray-800;
+  }
+  
+  .code-display {
+    @apply text-sm text-gray-300 overflow-x-auto whitespace-pre-wrap;
+  }
+  
+  .output-section {
+    @apply bg-white rounded-lg shadow-md p-6;
+  }
+  
+  .output-header {
+    @apply flex justify-between items-center mb-4;
+  }
+  
+  .controls {
+    @apply flex gap-2;
+  }
+  
+  .input-field {
+    @apply w-20 px-2 py-1 border rounded text-sm;
+  }
+  
+  .btn {
+    @apply px-4 py-1 rounded text-sm text-white;
+  }
+  
+  .btn-run {
+    @apply bg-green-500 hover:bg-green-600 disabled:bg-gray-400;
+  }
+  
+  .btn-reset {
+    @apply bg-gray-500 hover:bg-gray-600;
+  }
+  
+  .output-area {
+    @apply bg-gray-50 rounded-md p-4 min-h-[200px];
+  }
+  
+  .output-placeholder {
+    @apply text-gray-500 text-center;
+  }
+  
+  .output-content {
+    @apply font-mono text-sm space-y-1;
+  }
+  
+  .output-line {
+    @apply flex;
+  }
+  
+  .line-number {
+    @apply text-gray-400 w-8;
+  }
