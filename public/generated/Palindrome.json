@@ -1,0 +1,10 @@
+{
+  "name": "Palindrome",
+  "title": "Unknown Exercise",
+  "description": "",
+  "code": "",
+  "rawContent": "const isPalindrome = (str: string) => {\n    const cleaned = str.toLowerCase().replace(/[^a-z0-9]/g, '');\n    return cleaned === cleaned.split('').reverse().join('');\n};\n\nexport default {\n    isPalindrome,\n    metadata,\n    examples\n  };",
+  "metadata": null,
+  "examples": null,
+  "generatedAt": "2025-06-26T23:26:39.144Z"
+}

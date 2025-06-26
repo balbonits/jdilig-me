@@ -1,5 +1,3 @@
-// /src/exercises/fizzbuzz.ts
-
 import { ExerciseMetadata, ExampleCase } from '@interfaces/exercises';
 
 /**
