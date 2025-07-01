@@ -17,6 +17,9 @@ function generateExercises() {
   
   console.log(`Found ${files.length} exercise files to process...`);
   
+  // Collect all exercise data
+  const exercises = [];
+  
   files.forEach(file => {
     try {
       const filePath = path.join(exercisesDir, file);
@@ -48,16 +51,24 @@ function generateExercises() {
         generatedAt: new Date().toISOString()
       };
       
-      // Write JSON file to public/generated
-      const outputFile = path.join(outputDir, `${file.replace('.ts', '.json')}`);
-      fs.writeFileSync(outputFile, JSON.stringify(exerciseData, null, 2));
+      exercises.push(exerciseData);
       
-      console.log(`✓ Generated: ${file.replace('.ts', '.json')}`);
+      console.log(`✓ Processed: ${file}`);
       
     } catch (error) {
       console.error(`✗ Error processing ${file}:`, error.message);
     }
   });
+  
+  // Write single minified JSON file
+  try {
+    const outputFile = path.join(outputDir, 'exercises.json');
+    fs.writeFileSync(outputFile, JSON.stringify({ exercises }, null, 0));
+    console.log(`✓ Generated: exercises.json (${exercises.length} exercises)`);
+  } catch (error) {
+    console.error('✗ Error writing exercises.json:', error.message);
+    throw error;
+  }
   
   console.log('Exercise generation complete!');
 }
