@@ -21,6 +21,8 @@
     "paths": {
       "@src/*": ["./src/*"],
       "@app/*": ["./src/app/*"],
+      "@store": ["./src/store/index.ts"],
+      "@store/*": ["./src/store/*"],
       "@components/*": ["./src/components/*"],
       "@icons/*": ["./src/icons/*"],
       "@themes/*": ["./src/themes/*"],
