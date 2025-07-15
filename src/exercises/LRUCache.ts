@@ -4,35 +4,43 @@ import { ExerciseMetadata, ExampleCase } from '@interfaces/exercises';
  * LRU Cache Exercise Implementation
  * 
  * DESCRIPTION:
- * Implements Least Recently Used cache with get/put.
+ * Implements a Least Recently Used (LRU) cache with get and put operations.
+ * Evicts least recent item when capacity exceeded.
  * 
  * EXAMPLE:
- * new LRUCache(2); put(1,1); put(2,2); get(1) → 1; put(3,3); get(2) → -1
+ * cache = new LRUCache(2); cache.put(1,1); cache.put(2,2); cache.get(1) → 1; cache.put(3,3); cache.get(2) → -1
  * 
  * CONCEPTS:
  * - Hash maps
- * - Linked lists
+ * - Doubly linked lists for order
  * 
  * PERFORMANCE:
- * - Time: O(1) get/put
+ * - Time: O(1) for get/put
  * - Space: O(capacity)
  * 
  * Multiple implementations included to show different approaches.
  */
 
+// Main class (Map-based)
 export class LRUCache {
   private capacity: number;
   private cache: Map<number, number>;
 
   constructor(capacity: number) {
-    if (!Number.isInteger(capacity) || capacity <= 0) throw new Error("Capacity must be a positive integer");
+    if (!Number.isInteger(capacity) || capacity <= 0) {
+      throw new Error("Capacity must be a positive integer");
+    }
     this.capacity = capacity;
     this.cache = new Map();
   }
 
   get(key: number): number {
-    if (typeof key !== 'number') throw new Error("Key must be a number");
-    if (!this.cache.has(key)) return -1;
+    if (typeof key !== 'number') {
+      throw new Error("Key must be a number");
+    }
+    if (!this.cache.has(key)) {
+      return -1;
+    }
     const value = this.cache.get(key)!;
     this.cache.delete(key);
     this.cache.set(key, value);
@@ -40,16 +48,23 @@ export class LRUCache {
   }
 
   put(key: number, value: number): void {
-    if (typeof key !== 'number' || typeof value !== 'number') throw new Error("Key and value must be numbers");
-    if (this.cache.has(key)) this.cache.delete(key);
+    if (typeof key !== 'number' || typeof value !== 'number') {
+      throw new Error("Key and value must be numbers");
+    }
+    if (this.cache.has(key)) {
+      this.cache.delete(key);
+    }
     this.cache.set(key, value);
     if (this.cache.size > this.capacity) {
       const lruKey = this.cache.keys().next().value;
-      this.cache.delete(lruKey);
+      if (lruKey !== undefined) {
+        this.cache.delete(lruKey);
+      }
     }
   }
 }
 
+// Alternative class (Map + DLL for strict O(1))
 class ListNode {
   key: number;
   value: number;
@@ -64,12 +79,14 @@ class ListNode {
 
 export class LRUCacheDLL {
   private capacity: number;
-  private cache: Map<number, { value: number; node: ListNode }>;
+  private cache: Map<number, ListNode>;
   private head: ListNode;
   private tail: ListNode;
 
   constructor(capacity: number) {
-    if (!Number.isInteger(capacity) || capacity <= 0) throw new Error("Capacity must be a positive integer");
+    if (!Number.isInteger(capacity) || capacity <= 0) {
+      throw new Error("Capacity must be a positive integer");
+    }
     this.capacity = capacity;
     this.cache = new Map();
     this.head = new ListNode();
@@ -79,23 +96,27 @@ export class LRUCacheDLL {
   }
 
   get(key: number): number {
-    if (typeof key !== 'number') throw new Error("Key must be a number");
+    if (typeof key !== 'number') {
+      throw new Error("Key must be a number");
+    }
     if (!this.cache.has(key)) return -1;
-    const { value, node } = this.cache.get(key)!;
+    const node = this.cache.get(key)!;
     this.moveToTail(node);
-    return value;
+    return node.value;
   }
 
   put(key: number, value: number): void {
-    if (typeof key !== 'number' || typeof value !== 'number') throw new Error("Key and value must be numbers");
+    if (typeof key !== 'number' || typeof value !== 'number') {
+      throw new Error("Key and value must be numbers");
+    }
     if (this.cache.has(key)) {
-      const { node } = this.cache.get(key)!;
+      const node = this.cache.get(key)!;
       node.value = value;
       this.moveToTail(node);
       return;
     }
     const node = new ListNode(key, value);
-    this.cache.set(key, { value, node });
+    this.cache.set(key, node);
     this.addToTail(node);
     if (this.cache.size > this.capacity) {
       const lru = this.head.next!;
@@ -122,6 +143,7 @@ export class LRUCacheDLL {
   }
 }
 
+// Exercise metadata
 export const metadata: ExerciseMetadata = {
   title: "LRU Cache",
   description: "Implements a Least Recently Used (LRU) cache with get and put",
@@ -130,11 +152,65 @@ export const metadata: ExerciseMetadata = {
   spaceComplexity: "O(capacity)"
 };
 
+// Example test cases
 export const examples: ExampleCase[] = [
-  { input: { operations: [["LRUCache", 2], ["put", 1, 1], ["put", 2, 2], ["get", 1], ["put", 3, 3], ["get", 2], ["put", 4, 4], ["get", 1], ["get", 3], ["get", 4]] }, output: [null, null, null, 1, null, -1, null, -1, 3, 4], description: "Standard LRU with evictions" },
-  { input: { operations: [["LRUCache", 1], ["put", 1, 1], ["get", 1], ["put", 2, 2], ["get", 1]] }, output: [null, null, 1, null, -1], description: "Capacity 1" },
-  { input: { operations: [["LRUCache", 0]] }, output: new Error("Capacity must be a positive integer"), description: "Invalid capacity" },
-  { input: { operations: [["LRUCache", 2], ["put", 1, 1], ["get", 2]] }, output: [null, null, -1], description: "Missing key" }
+  {
+    input: {
+      operations: [
+        ["LRUCache", 2],
+        ["put", 1, 1],
+        ["put", 2, 2],
+        ["get", 1],
+        ["put", 3, 3],
+        ["get", 2],
+        ["put", 4, 4],
+        ["get", 1],
+        ["get", 3],
+        ["get", 4]
+      ]
+    },
+    output: [null, null, null, 1, null, -1, null, -1, 3, 4],
+    description: "Standard LRU operations with evictions"
+  },
+  {
+    input: {
+      operations: [
+        ["LRUCache", 1],
+        ["put", 1, 1],
+        ["get", 1],
+        ["put", 2, 2],
+        ["get", 1]
+      ]
+    },
+    output: [null, null, 1, null, -1],
+    description: "Capacity 1, eviction on second put"
+  },
+  {
+    input: {
+      operations: [
+        ["LRUCache", 0]
+      ]
+    },
+    output: new Error("Capacity must be a positive integer"),
+    description: "Invalid capacity"
+  },
+  {
+    input: {
+      operations: [
+        ["LRUCache", 2],
+        ["put", 1, 1],
+        ["get", 2]
+      ]
+    },
+    output: [null, null, -1],
+    description: "Get missing key"
+  }
 ];
 
-export default { LRUCache, LRUCacheDLL, metadata, examples };
+// Default export for easy importing
+export default {
+  LRUCache,
+  LRUCacheDLL,
+  metadata,
+  examples
+};
