@@ -6,10 +6,11 @@ import { ThemeProvider, useTheme } from '@src/context/ThemeContext';
 import { useEffect, ReactNode } from 'react';
 
 function ThemeApplier({ children }: { children: ReactNode }) {
-  const { mode } = useTheme();
+  const { theme } = useTheme();
   useEffect(() => {
-    document.documentElement.className = mode === 'dark' ? 'dark' : '';
-  }, [mode]);
+    document.documentElement.classList.remove('light', 'dark');
+    document.documentElement.classList.add(theme);
+  }, [theme]);
   return <>{children}</>;
 }
 
