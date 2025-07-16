@@ -1,16 +1,19 @@
+// src/components/layout/Header/Header.tsx
+'use client';
+
 import React from 'react';
 import HeaderNav from '@components/nav/Header/Header';
 import './Header.css';
 
 const HeaderLayout = () => {
-    return (
+  return (
     <header>
-        <div>
-            <h1>John Dilig</h1>
-        </div>
-        <HeaderNav />
+      <div>
+        <h1>John Dilig</h1>
+      </div>
+      <HeaderNav />
     </header>
-    );
+  );
 };
 
 export default HeaderLayout;

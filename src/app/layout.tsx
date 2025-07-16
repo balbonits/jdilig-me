@@ -1,3 +1,5 @@
+`use client`;
+
 import type { Metadata } from 'next';
 
 // components
@@ -20,24 +22,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <head>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              (function() {
-                const theme = sessionStorage.getItem('theme');
-                if (theme) {
-                  document.documentElement.classList.add(theme);
-                } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-                  document.documentElement.classList.add('dark');
-                } else {
-                  document.documentElement.classList.add('light');
-                }
-              })();
-            `,
-          }}
-        />
-      </head>
       <body>
         <Providers>
           <Header />
