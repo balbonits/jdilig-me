@@ -4,18 +4,19 @@ import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
 import SyntaxHighlighter from 'react-syntax-highlighter';
 
-function extractObjectLiteral(str: string) {
-  const match = str.match(/=\s*({[\s\S]*});?$/);
+function extractLiteral(str: string) {
+  const match = str.match(/=\s*(\{[\s\S]*\}|\[[\s\S]*\]);?$/);
   if (!match) return {};
   try {
-    // Try to convert to JSON (replace keys and single quotes)
+    // Try to convert to JSON (quote keys, single to double quotes)
     return JSON.parse(
       match[1]
         .replace(/(\w+):/g, '"$1":') // quote keys
         .replace(/'/g, '"') // single to double quotes
+        .replace(/,(\s*[\]}])/g, '$1') // remove trailing commas
     );
   } catch {
-    // Fallback: use Function to safely evaluate only the object
+    // Fallback: use Function to safely evaluate
     return Function('"use strict";return (' + match[1] + ')')();
   }
 }
@@ -50,13 +51,9 @@ export default function ExercisePage() {
   if (status === 'loading') return <div>Loading...</div>;
   if (status === 'failed' || !ex) return <div>Exercise not found</div>;
 
-  const metadata = ex.metadata ? extractObjectLiteral(ex.metadata) : {};
-  const rawExamples = ex.examples ? extractObjectLiteral(ex.examples) : [];
-  const examples = Array.isArray(rawExamples)
-    ? rawExamples
-    : (rawExamples && typeof rawExamples === 'object')
-      ? Object.values(rawExamples)
-      : [];
+  const metadata = ex.metadata ? extractLiteral(ex.metadata) : {};
+  const rawExamples = ex.examples ? extractLiteral(ex.examples) : [];
+  const examples = Array.isArray(rawExamples) ? rawExamples : [];
 
   return (
     <div className="container mx-auto p-6">

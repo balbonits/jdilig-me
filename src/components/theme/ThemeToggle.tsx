@@ -4,7 +4,7 @@ import { RootState, AppDispatch } from '@store';
 import { toggleTheme } from '@store/themeSlice';
 
 export default function ThemeToggle() {
-  const theme = useSelector((state: RootState) => state.theme.mode);
+  const theme = useSelector((state: RootState) => state.theme?.mode ?? 'dark');
   const dispatch = useDispatch<AppDispatch>();
 
   return (
