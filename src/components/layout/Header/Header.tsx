@@ -7,11 +7,11 @@ import './Header.css';
 
 const HeaderLayout = () => {
   return (
-    <header>
-      <div>
-        <h1>John Dilig</h1>
+    <header className="header-layout">
+      <div className="header-content">
+        <h1 className="header-name">John Dilig</h1>
+        <HeaderNav />
       </div>
-      <HeaderNav />
     </header>
   );
 };

@@ -5,14 +5,13 @@ import './Footer.css';
 const FooterLayout = () => {
     return (
     <footer>
-        <div>
-            <h1>John Dilig</h1>
-            <p>
-                Redondo Beach, CA, USA <br />
-                <a href='https://www.linkedin.com/in/rjdilig/' target='_blank'>LinkedIn</a>
-            </p>
-        </div>
-        <FooterNav />
+        <address>
+            Redondo Beach, CA, USA <br />
+            <a href='https://www.linkedin.com/in/rjdilig/' target='_blank' rel='noopener noreferrer'>LinkedIn</a>
+        </address>
+        <nav>
+            <FooterNav />
+        </nav>
     </footer>
     );
 };

@@ -5,6 +5,7 @@ interface ThemeContextType { theme: 'light' | 'dark'; toggleTheme: () => void; }
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
+  // Set default theme to 'light'
   const [theme, setTheme] = useState<'light' | 'dark'>('light');
   const [mounted, setMounted] = useState(false);
 
@@ -14,11 +15,8 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     const storedTheme = typeof window !== 'undefined'
       ? (sessionStorage.getItem('theme') as 'light' | 'dark' | null)
       : null;
-    const initialTheme =
-      storedTheme ||
-      (typeof window !== 'undefined' && window.matchMedia('(prefers-color-scheme: dark)').matches
-        ? 'dark'
-        : 'light');
+    // Always default to 'light' if no stored theme
+    const initialTheme = storedTheme || 'light';
     setTheme(initialTheme);
     if (typeof document !== 'undefined') {
       document.documentElement.classList.remove('light', 'dark');

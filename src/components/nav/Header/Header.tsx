@@ -1,33 +1,52 @@
 // src/components/nav/Header/Header.tsx
 'use client';
 
-import React from 'react';
-// import React, { useState, useEffect } from 'react';
-// import { useTheme } from '@src/context/ThemeContext';
-// import { Button } from '@components/form/Button';
+import React, { useState } from 'react';
+import Link from 'next/link';
+import { navItems } from '@src/utils/navItems';
 import './Header.css';
 
-// const ThemeToggle = () => {
-//   const { toggleTheme } = useTheme();
-
-//   return <Button onClick={toggleTheme}>Toggle Theme</Button>;
-// };
-
 const HeaderNav = () => {
-//   const [mounted, setMounted] = useState(false);
+  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
 
-//   useEffect(() => {
-//     setMounted(true);
-//   }, []);
-
-//   if (!mounted) {
-//     return <Button disabled>Toggle Theme</Button>; // Placeholder to avoid flicker
-//   }
+  const toggleDropdown = (label: string) => {
+    setOpenDropdown(openDropdown === label ? null : label);
+  };
 
   return (
-    <div>
-      {/* <ThemeToggle /> */}
-    </div>
+    <nav className="header-nav">
+      <ul className="nav-list">
+        {navItems.map((item) => (
+          <li key={item.label} className="nav-item">
+            {item.children ? (
+              <>
+                <button
+                  className="nav-link nav-dropdown-toggle"
+                  onClick={() => toggleDropdown(item.label)}
+                >
+                  {item.label}
+                </button>
+                {(openDropdown === item.label) && (
+                  <ul className="nav-sublist">
+                    {item.children.map((sub) => (
+                      <li key={sub.label} className="nav-subitem">
+                        <Link href={sub.href} className="nav-sublink" onClick={() => setOpenDropdown(null)}>
+                          {sub.label}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </>
+            ) : (
+              <Link href={item.href} className="nav-link">
+                {item.label}
+              </Link>
+            )}
+          </li>
+        ))}
+      </ul>
+    </nav>
   );
 };
 
