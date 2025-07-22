@@ -4,7 +4,7 @@ export default function Resume() {
     return (
         <div className="resume-container">
             <h1 className="resume-title">Reuel John Dilig</h1>
-            <p className="text-meta">Redondo Beach, CA 90278 | 9099971393 | rjdofficemail@gmail.com</p>
+            <p className="text-meta">Redondo Beach, CA 90278 | (909) 9971393 | <a href="mailto:rjdofficemail@gmail.com">rjdofficemail@gmail.com</a></p>
             <section className="resume-section">
                 <h2 className="section-title">Websites, Portfolios, Profiles</h2>
                 <ul className="list-disc">
