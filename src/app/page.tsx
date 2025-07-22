@@ -1,8 +1,8 @@
 
 import React from 'react';
-import AboutMe from '@src/components/AboutMe';
+import Resume from '@components/resume/Resume';
 export default function Home() {
   return (<>
-    <AboutMe />
+    <Resume />
   </>);
 }

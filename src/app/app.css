@@ -1,10 +1,8 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
+/* src/app/app.css */
 .light {
-  --background: #ffffff;
+  --background: #f8f9fa;
   --foreground: #171717;
+  --content-bg: #ffffff;
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
@@ -12,10 +10,54 @@
 .dark {
   --background: #0a0a0a;
   --foreground: #ededed;
+  --content-bg: #0a0a0a;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+}
+
+/* Global max-width and centering for content above tablet-portrait */
+main {
+  background-color: var(--content-bg);
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+@media (min-width: 768px) {
+  main {
+    max-width: 768px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+/* Breakpoint styles */
+@media (min-width: 640px) {
+  /* Tablet Portrait (sm): 640px - 767px */
+  main {
+    padding: 1.5rem;
+  }
+}
+
+@media (min-width: 768px) {
+  /* Tablet Landscape (md): 768px - 1023px */
+  main {
+    padding: 2rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  /* Desktop (lg): 1024px - 1279px */
+  main {
+    padding: 2.5rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  /* Large Desktop (xl): 1280px and above */
+  main {
+    padding: 3rem;
+  }
 }
