@@ -8,9 +8,8 @@ export default function Resume() {
             <section className="resume-section">
                 <h2 className="section-title">Websites, Portfolios, Profiles</h2>
                 <ul className="list-disc">
-                    <li><a href="https://www.linkedin.com/in/rjdilig/" target="_blank" rel="noopener noreferrer">LinkedIn: https://www.linkedin.com/in/rjdilig/</a></li>
-                    <li><a href="https://jdilig-me.vercel.app/" target="_blank" rel="noopener noreferrer">Website: https://jdilig-me.vercel.app/</a></li>
-                    <li><a href="http://github.com/balbonits" target="_blank" rel="noopener noreferrer">GitHub: http://github.com/balbonits</a></li>
+                    <li>LinkedIn: <a href="https://www.linkedin.com/in/rjdilig/" target="_blank" rel="noopener noreferrer">https://www.linkedin.com/in/rjdilig/</a></li>
+                    <li>GitHub: <a href="http://github.com/balbonits" target="_blank" rel="noopener noreferrer">http://github.com/balbonits</a></li>
                 </ul>
             </section>
 
