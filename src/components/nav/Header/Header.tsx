@@ -1,4 +1,3 @@
-// src/components/nav/Header/Header.tsx
 'use client';
 
 import React, { useState } from 'react';
@@ -30,7 +29,11 @@ const HeaderNav = () => {
                   <ul className="nav-sublist">
                     {item.children.map((sub) => (
                       <li key={sub.label} className="nav-subitem">
-                        <Link href={sub.href} className="nav-sublink" onClick={() => setOpenDropdown(null)}>
+                        <Link
+                          href={sub.href || '/coming-soon'}
+                          className="nav-sublink"
+                          onClick={() => setOpenDropdown(null)}
+                        >
                           {sub.label}
                         </Link>
                       </li>
@@ -39,7 +42,10 @@ const HeaderNav = () => {
                 )}
               </>
             ) : (
-              <Link href={item.href} className="nav-link">
+              <Link
+                href={item.href || '/coming-soon'}
+                className="nav-link"
+              >
                 {item.label}
               </Link>
             )}
