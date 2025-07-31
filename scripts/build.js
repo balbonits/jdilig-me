@@ -1,5 +1,6 @@
 // /scripts/build.js
 const { generateExercises } = require('./generate-exercises');
+const { generateUtilities } = require('./generate-utilities');
 // const { generateSitemaps } = require('./generate-sitemaps');
 // const { optimizeImages } = require('./optimize-images');
 
@@ -9,6 +10,7 @@ async function runBuildTasks() {
   try {
     // Run tasks in order
     await generateExercises();
+    await generateUtilities();
     // await generateSitemaps();
     // await optimizeImages();
     
